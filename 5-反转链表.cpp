@@ -10,6 +10,7 @@ struct Node{
 class LinkList{
 private:
 	Node *p = NULL;
+	stack<int> sta;
 public:
 	void addNode(int val);
 	bool delNode(int val);
@@ -72,10 +73,24 @@ void LinkList::travel(){
 }
 
 void LinkList::reverse(){
+	if(this->p == NULL)
+		return;
+	Node *x = this->p;
+    while(x->next != NULL){
+		this->sta.push(x->value);
+        x = x->next;
+    }
+    this->sta.push(x->value);
+    cout<<"反向遍历链表：";
+	while(!this->sta.empty()){
+        cout<<this->sta.top()<<" ";
+        this->sta.pop();
+	}
+	cout<<endl;
 }
 
 
-void testLinkList(){
+void test(){
 	LinkList a;
 	if(a.delNode(6)){
 		cout<<"删除节点成功"<<endl;
@@ -89,6 +104,7 @@ void testLinkList(){
 	a.addNode(4);
 	a.addNode(5);
 	a.travel();
+	a.reverse();
 	if(a.delNode(1)){
 		cout<<"删除节点1成功"<<endl;
 	}else{
@@ -111,6 +127,6 @@ void testLinkList(){
 
 
 int main(){
-	testLinkList();
+	test();
 	return 0;
 }
