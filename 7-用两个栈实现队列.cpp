@@ -18,6 +18,8 @@ bool MyQueue::add(int n){
 
 bool MyQueue::del(int &n){
 	if(out.empty()){
+		if(in.empty())
+			return false;
 		int element;
 		while(!in.empty()){
 			element = in.top();
@@ -25,8 +27,6 @@ bool MyQueue::del(int &n){
 			out.push(element);
 		}
 	}
-	if(out.empty())
-		return false;
 	n = out.top();
 	out.pop();
 	return true;
@@ -36,9 +36,9 @@ void test(){
 	int element = 5;
 	MyQueue queue;
     if(queue.del(element)){
-		cout<<"空队列删除元素，返回真，element="<<element<<endl;
+		cout<<"空队列删除元素，返回真（删除成功），element="<<element<<endl;
     }else{
-    	cout<<"空队列删除元素，返回假，element="<<element<<endl;
+    	cout<<"空队列删除元素，返回假（删除失败），element="<<element<<endl;
     }
 
     queue.add(1);
@@ -46,9 +46,9 @@ void test(){
     queue.add(3);
     element = 5;
     if(queue.del(element)){
-		cout<<"队列删除元素，返回真，被删除的element="<<element<<endl;
+		cout<<"队列删除元素，返回真（删除成功），被删除的element="<<element<<endl;
     }else{
-    	cout<<"队列删除元素，返回假，被删除的element="<<element<<endl;
+    	cout<<"队列删除元素，返回假（删除失败），被删除的element="<<element<<endl;
     }
 
     int n;
