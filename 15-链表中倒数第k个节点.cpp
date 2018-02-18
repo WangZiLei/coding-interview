@@ -77,7 +77,7 @@ int LinkList::getFromEndToBegin(int k){
 	i = this->p;
 	j = this->p;
 
-	if(k == 0)
+	if(k < 1)
 		throw std::exception();
 	if(j == NULL)
 		throw std::exception();
